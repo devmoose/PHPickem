@@ -7,7 +7,7 @@ pickem.methods = {};
 pickem.values = {};
 pickem.values.getUrl = "pickem_ajax.php";
 
-pickem.methods.getPlayers = function() {
+pickem.methods.loadPlayers = function() {
     if (pickem.values.players.length == 0) {
         var players = [];
         $(".player").each(function(index, element) {
@@ -23,7 +23,7 @@ pickem.methods.getPlayers = function() {
 
 pickem.methods.requestPlayerUpdate = function() {
     if (pickem.values.players.length == 0) {
-        pickem.methods.getPlayers();
+        pickem.methods.loadPlayers();
     }
     var players = (function() {
         var str = "";
@@ -58,8 +58,8 @@ pickem.methods.updatePlayer = function(player) {
             return false;
         }
     });
-}
+};
 
 pickem.methods.updatePlayerPosition = function(player) {
-
+    $("#" + player.id).attr("score", player.score);
 };
